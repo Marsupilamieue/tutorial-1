@@ -15,6 +15,20 @@ public class ProductRepository {
         return product;
     }
 
+    public Product findById(String productId){
+        return productData.stream().filter(
+                product -> productId.equals(product.getProductId())
+        ).findFirst().orElseThrow(() ->
+                new IllegalArgumentException("Invalid product Id")
+        );
+    }
+
+    public Product deleteById(String productId) {
+        Product product = findById(productId);
+        productData.remove(product);
+        return product;
+    }
+
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
