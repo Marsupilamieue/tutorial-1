@@ -19,13 +19,20 @@ public class ProductRepository {
         return productData.stream().filter(
                 product -> productId.equals(product.getProductId())
         ).findFirst().orElseThrow(() ->
-                new IllegalArgumentException("Invalid product Id")
+                new IllegalArgumentException("Invalid product Id" + productId)
         );
     }
 
     public Product deleteById(String productId) {
         Product product = findById(productId);
         productData.remove(product);
+        return product;
+    }
+
+    public Product editProduct(Product editedProduct){
+        Product product = findById(editedProduct.getProductId());
+        product.setProductName(editedProduct.getProductName());
+        product.setProductQuantity(editedProduct.getProductQuantity());
         return product;
     }
 
