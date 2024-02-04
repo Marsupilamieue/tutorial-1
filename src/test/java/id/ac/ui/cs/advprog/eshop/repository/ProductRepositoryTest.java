@@ -64,6 +64,56 @@ class ProductRepositoryTest{
         assertFalse(productIterator.hasNext());
     }
 
+    @Test
+    void testDeleteProduct(){
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af61af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+        productRepository.deleteById(product.getProductId());
+        assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testEditProduct(){
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af61af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+
+        productRepository.create(product);
+
+        assertEquals(product.getProductName(), "Sampo Cap Bambang");
+        product.setProductName("Sampo Cap Ucup");
+        productRepository.editProduct(product);
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+        assertEquals("Sampo Cap Ucup", product.getProductName());
+    }
+
+    @Test
+    void testEditProductBeforeCreateProduct(){
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af61af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+
+        assertThrows(IllegalArgumentException.class, () -> productRepository.editProduct(product));
+    }
+
+    @Test
+    void testDeleteProductBeforeCreateProduct(){
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af61af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+
+        assertThrows(IllegalArgumentException.class, () -> productRepository.deleteById(product.getProductId()));
+    }
 
 }
 
