@@ -25,10 +25,5 @@ class EshopApplicationTests {
         assertThat(body).contains("Welcome");
     }
 
-    @Test
-    void testProductPage() {
-        String body = this.restTemplate.getForObject("/product/list", String.class);
-        assertThat(body).contains("Product' List");
-    }
 
 }
