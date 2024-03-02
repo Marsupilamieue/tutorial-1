@@ -1,7 +1,9 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.Or;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +56,10 @@ class OrderTest{
     @Test
     void testCreateOrderSuccessStatus(){
         Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
-                this.products, 1708560000L, "Safira Sudrajat", "SUCCESS");
+                this.products, 1708560000L, "Safira Sudrajat",
+                OrderStatus.SUCCESS.getValue());
 
-        assertEquals("SUCCESS", order.getStatus());
+        assertEquals(OrderStatus.SUCCESS.getValue(), order.getStatus());
     }
 
     @Test
@@ -72,13 +75,14 @@ class OrderTest{
         Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
                 this.products, 1708560000L, "Safira Sudrajat");
         order.setStatus("CANCELLED");
-        assertEquals("CANCELLED", order.getStatus());
+        assertEquals(OrderStatus.CANCELLED.getValue(), order.getStatus());
     }
 
     @Test
     void testSetStatusToInvalidStatus(){
         Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
-                this.products, 1708560000L, "Safira Sudrajat", "SUCCESS");
+                this.products, 1708560000L, "Safira Sudrajat",
+                OrderStatus.SUCCESS.getValue());
         assertThrows(IllegalArgumentException.class, () -> order.setStatus("MEOW"));
     }
 
