@@ -92,7 +92,7 @@ class PaymentTest {
         loadVoucherCodePaymentData();
         paymentData.put("voucherCode", "INVALID_CODE");
         Payment payment1 = new Payment("63dedbd6-c9a5-4074-bb78-72acb6b8f6f5", order, PaymentMethod.COD.getValue(), paymentData);
-        payment1.processVoucherPayment("INVALID_CODE");
+        payment1.processVoucherPayment(paymentData.get("voucherCode"));
         assertEquals(payment1.getStatus(), PaymentStatus.REJECTED.getValue());
         paymentData.clear();
     }
@@ -100,7 +100,7 @@ class PaymentTest {
     void createPaymentVoucherCodeWithSuccessStatus(){
         loadVoucherCodePaymentData();
         Payment payment1 = new Payment("63dedbd6-c9a5-4074-bb78-72acb6b8f6f5", order, PaymentMethod.VOUCHER.getValue() , paymentData);
-        payment1.processVoucherPayment("ESHOP1234ABC5678");
+        payment1.processVoucherPayment(paymentData.get("voucherCode"));
         assertEquals(payment1.getStatus(), PaymentStatus.SUCCESS.getValue());
         paymentData.clear();
     }
