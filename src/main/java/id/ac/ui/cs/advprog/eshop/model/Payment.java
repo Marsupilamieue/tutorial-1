@@ -39,13 +39,7 @@ public class Payment {
 
     public Payment(String id, Order order, String method, Map<String, String> paymentData, String  status){
         this(id,order,method,paymentData);
-
-        String[] statusList = {"WAITING_PAYMENT", "REJECTED", "SUCCESS", "FAILED"};
-        if(Arrays.stream(statusList).noneMatch(item -> (item.equals(status)))){
-            throw new IllegalArgumentException();
-        }else{
-            this.status = status;
-        }
+        this.setStatus(status);
     }
 
     public void setStatus(String status){
