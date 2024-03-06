@@ -84,3 +84,17 @@ I use Koyeb for the Continuous Deployment (CD), Koyeb has also put into action s
 - Dependency Inversion Principle (DIP):
     - Disadvantage: Relying on concrete classes rather than abstractions can make the code less flexible and more difficult to refactor.
     - Example: If CarServiceImpl directly depends on a concrete ProductRepository class, switching to a different storage solution would require significant changes to the CarServiceImpl.
+
+## Module 4
+
+**Reflection1**
+
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+- The tests should be written in a way that they are easy to understand and maintain. They should be clear about what they are testing and what the expected outcomes are.
+- The tests should cover not only the typical use cases but also edge cases that might cause the system to behave unexpectedly.
+- The tests should cover all parts of the code to ensure that any changes or additions to the code do not break existing functionality.
+- Each test should be able to run independently of the others. This makes it easier to pinpoint the cause when a test fails.
+- The tests should produce the same results each time they are run, regardless of the environment in which they are executed.
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+- I’ve adhered to the F.I.R.S.T principles in my testing approach, ensuring that my tests are executed promptly to maintain a smooth development process. I’ve categorized my tests into two types: unit tests and functional tests. In my unit tests, I’ve made sure to avoid dependencies on other subsystems or functions. My tests are designed to be non-interfering and state-independent, meaning they don’t alter function states or rely on other test cases. To prevent redundancy and ensure proper cleanup of objects, I’ve utilized dummies, mocks, setUp, and tearDown techniques. My tests yield consistent results across multiple runs. In situations where my function calls other functions, I’ve employed Test Double techniques. My tests are self-verifying due to the use of strict assertions. Lastly, my tests are comprehensive and timely, as they examine all possible outcomes, errors, and results, including both successful and unsuccessful scenarios.
